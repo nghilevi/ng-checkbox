@@ -1,0 +1,59 @@
+<div class="row align-center">
+    <div style="margin-left:28%" class="columns">
+        <button class="button" type="button" data-toggle="example-dropdown">Sort</button>
+        <div class="dropdown-pane" id="example-dropdown" data-dropdown data-auto-focus="true">
+            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+                <li ng-click="multiCBCTrl.sort(option)" ng-repeat="option in multiCBCTrl.options">
+                    {{option.key}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row align-center">
+    <table>
+        <tr>
+            <th>
+                <ng-checkbox ng-if="!multiCBCTrl.isMultiTableMode" select-all="true">ITEM</ng-checkbox>
+            </th>
+            <th>CATEGORY</th>
+            <th>QUANTITY</th>
+            <th>AMOUNT</th>
+            <th></th>
+        </tr>
+        <tbody ng-repeat="products in (multiCBCTrl.isMultiTableMode ? multiCBCTrl.products : [multiCBCTrl.products])" ng-init="checkboxGroupId = $index;">
+        <tr ng-if="products.length >0 && multiCBCTrl.isMultiTableMode">
+            <td>
+                <ng-checkbox group-id="{{::products[0]['category']}}" data-id="{{'headCheckBox'+products[0]['category']}}" select-by-group="true">
+                    <h3 style="display:inline-block">Category {{products[0]['category']}}</h3>
+                </ng-checkbox>
+            </td>
+            <td>{{::product.name}}</td>
+            <td>Selected price: {{ multiCBCTrl.sumByGroups[products[0]['category']].sumByUnits }}</td>
+        </tr>
+        <tr ng-repeat="product in products | limitTo:totalDisplayed track by product.id" tabindex="0">
+            <td>
+                <ng-checkbox group-id="{{::product.category}}"
+                              data-id="{{::product.id}}"
+                              ng-model="product.value"
+                              sum="::product.price"
+                              unit="{{::product.currency}}">{{::product.name}}
+                </ng-checkbox>
+            </td>
+            <td>{{::product.category}}</td>
+            <td>{{::product.quantity}}</td>
+            <td>{{::product.price}} {{::product.currency}}</td>
+            <td><button style="cursor:pointer" ng-click="multiCBCTrl.delete(product)">Delete</button></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="row align-center"> 
+    <div ng-if="multiCBCTrl.products.length >0">
+        <button class="hollow button" state=" {{ totalDisplayed >= products.length ? 'disabled' : null }} "  ng-click="loadMore(totalDisplayed)">Load More</button>
+        <button state=" {{ !count ? 'disabled' : null }} " class="secondary hollow button" href="#">CONFIRM ({{multiCBCTrl.count}}) {{ multiCBCTrl.sumByUnits }}</button>
+    </div>
+</div>

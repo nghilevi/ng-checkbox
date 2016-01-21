@@ -1,0 +1,26 @@
+{
+  "name": "ng-checkbox",
+  "version": "0.0.0",
+  "description": "The component provides selection data and its statistics based on checkboxes selection.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nghi Le Vinh <vinhnghi223@gmail.com> (http://vinhnghi223.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "~3.10.1",
+    "angular": "~1.4.8",
+    "ng-lodash": "~0.2.3"
+  },
+  "devDependencies": {
+    "angular-ui-router": "^1.0.0-alpha0",
+    "foundation-sites": "^6.1.1",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-ng-html2js": "^0.2.0",
+    "gulp-webserver": "^0.9.1"
+  }
+}
