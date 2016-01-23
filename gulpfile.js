@@ -24,6 +24,15 @@ gulp.task('concat',['clean:build'],function(){
 			.pipe(gulp.dest(build));
 });
 
+gulp.task('dist',['clean:dist'],function(){
+	return gulp.src('demo/build/ngCheckbox.js')
+		.pipe($.ngAnnotate())
+		.pipe($.uglify())
+		.pipe($.concat('ngCheckbox.min.js'))
+		.pipe(gulp.dest('dist'));
+});
+
+
 gulp.task('watch',['concat'],function(){
 	gulp.watch(['src/**/*.js','src/**/*.html'],['concat']);
 });
