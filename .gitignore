@@ -1,7 +1,5 @@
 build
 demo/build
 node_modules
-TODO.txt
 .idea
-legacy
-demo/js/demoControllerOld.js
+TODO.txt
