@@ -5,11 +5,12 @@ angular.module('ngCheckbox')
             transclude: true,
             scope: {
                 head:'=',
-                sum:'=',
+                id: '@',
+                superGroup: '@',
                 groups: '=',
                 ngModel:'=?ngModel',
+                sum:'=',
                 count:'@',
-                id: '@',
                 unit:'@'
             },
             templateUrl: 'ngCheckbox/ngCheckbox.tpl.html',
