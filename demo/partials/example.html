@@ -15,7 +15,7 @@
     <table>
         <tr>
             <th>
-                <ng-checkbox-2 super-group="{{::exampleCtrl.type}}" ng-if="!exampleCtrl.isMultiTableMode" head="true">ITEM</ng-checkbox-2>
+                <ng-checkbox-2 super-group="{{::exampleCtrl.type}}" ng-if="!exampleCtrl.isMultiTableMode" head="true"><b>ITEM</b></ng-checkbox-2>
             </th>
             <th>CATEGORY</th>
             <th>QUANTITY</th>
@@ -45,7 +45,7 @@
             <td>{{::product.category}}</td>
             <td>{{::product.quantity}}</td>
             <td>{{::product.price}} {{::product.currency}}</td>
-            <td><button style="cursor:pointer" ng-click="exampleCtrl.delete(product)">Delete</button></td>
+            <td><button ng-click="exampleCtrl.delete(product)" class="remove">Remove</button></td>
         </tr>
 
         <!-- Summary -->
@@ -61,7 +61,6 @@
                     {{ amount.sum}} {{ amount.unit }}<br/>
                 </span>
             </td>
-            <td colspan="2"></td>
         </tr>
 
 
