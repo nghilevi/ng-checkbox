@@ -2,8 +2,11 @@
  * Created by Le on 1/21/2016.
  */
 angular.module('ngCheckbox')
-    .factory('ngCheckboxStatistics', function () {
-        var checkboxCtrlsCache =[],ngCheckboxStatisticsListeners=[];
+    .factory('ngCheckboxStatistics', function ($timeout) {
+        var checkboxCtrlsCache =[],
+            ngCheckboxStatisticsListeners=[],
+            updatePromise;
+
         var registerCheckboxCtrl = function (checkboxCtrl) {
             checkboxCtrlsCache.push(checkboxCtrl);
         };
@@ -11,7 +14,7 @@ angular.module('ngCheckbox')
         var unregisterCheckboxCtrl = function (checkboxCtrl) {
             if(checkboxCtrlsCache.length > 0){
                 _.remove(checkboxCtrlsCache,{id:checkboxCtrl.id});
-                //checkboxCtrl.ngModel && _debounceUpdate();
+                checkboxCtrl.ngModel && _debounceUpdate();
             }
         };
 
@@ -24,6 +27,13 @@ angular.module('ngCheckbox')
                     superGroup: superGroup || 'default'
                 });
             }
+        };
+
+        var _debounceUpdate = function () {
+            $timeout.cancel(updatePromise);
+            updatePromise=$timeout(function () {
+                invokeNotifyResult();
+            },20);
         };
 
         var update = function (checkboxCtrl) {
