@@ -48,6 +48,23 @@
             <td><button style="cursor:pointer" ng-click="exampleCtrl.delete(product)">Delete</button></td>
         </tr>
 
+        <!-- Summary -->
+        <tr ng-if="products.length >0">
+            <td colspan="4">
+                <span>You selected: {{exampleCtrl.count}} items</span>
+            </td>
+            <td colspan="1">
+                <span ng-if="!exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.sumByUnits">
+                    <span ng-if="amount.sum > 0">{{ amount.sum}} {{ amount.unit }}<br/></span>
+                </span>
+                <span ng-if="exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.sumByGroups[payments[0].from].sumByUnits">
+                    {{ amount.sum}} {{ amount.unit }}<br/>
+                </span>
+            </td>
+            <td colspan="2"></td>
+        </tr>
+
+
         </tbody>
     </table>
 </div>
@@ -55,6 +72,5 @@
 <div class="row align-center">
     <div ng-if="exampleCtrl.products.length >0">
         <button class="hollow button" state=" {{ exampleCtrl.totalDisplayed >= products.length ? 'disabled' : null }} "  ng-click="loadMore(exampleCtrl.totalDisplayed)">Load More</button>
-        <button state=" {{ !count ? 'disabled' : null }} " class="secondary hollow button" href="#">CONFIRM ({{exampleCtrl.count}}) {{ exampleCtrl.sumByUnits }}</button>
     </div>
 </div>

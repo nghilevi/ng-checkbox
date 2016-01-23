@@ -2,14 +2,10 @@
  * Created by Le on 1/23/2016.
  */
 var onCheckboxClick = function (stats) {
-    console.log('onCheckboxClick');
-    var _this = this;
-    this.count = 0;
-    this.sumByUnits = 0;
-    angular.forEach(stats, function (group) {
-        _this.count += group.count;
-        _this.sumByUnits += group.sumByUnits;
-    });
+    console.log('stats: ',stats);
+    this.count = stats.count;
+    this.sumByUnits = stats.sumByUnits;
+    this.sum = _.sum(stats.sumByUnits,'sum');
 };
 
 var ExampleControllerBasic = function (exampleTypeBasic,exampleProductsBasic,$scope,ngCheckboxStatistics,$document) {
