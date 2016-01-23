@@ -8,7 +8,7 @@ var onCheckboxClick = function (stats) {
     this.sum = _.sum(stats.sumByUnits,'sum');
 };
 
-var ExampleControllerBasic = function (exampleTypeBasic,exampleProductsBasic,$scope,ngCheckboxStatistics,$document) {
+var ExampleControllerBasic = function (exampleTypeBasic,exampleProductsBasic,$scope,ngCheckboxStatistics) {
     var _this = this;
     this.type = exampleTypeBasic;
     this.products = exampleProductsBasic;

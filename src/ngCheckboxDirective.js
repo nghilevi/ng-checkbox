@@ -13,7 +13,7 @@ angular.module('ngCheckbox')
                 count:'@',
                 unit:'@'
             },
-            templateUrl: 'ngCheckbox/ngCheckbox.tpl.html',
+            templateUrl: 'ngCheckbox.tpl.html',
             controllerAs:'checkboxCtrl',
             controller: 'NgCheckboxController2',
             link: function (scope, element, attrs, checkboxCtrl) {
