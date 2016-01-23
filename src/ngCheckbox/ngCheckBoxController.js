@@ -1,9 +1,9 @@
 function NgCheckboxController2($scope,ngCheckboxRequestHandler) {
     this.ngCheckboxRequestHandler = ngCheckboxRequestHandler;
     this.$scope = $scope;
-    this.head = ($scope.selectAll===true || $scope.selectAll===false)? $scope.selectAll : false;
+    this.head = ($scope.head===true || $scope.head===false)? $scope.head : false;
     this.sum = angular.isArray($scope.sum) ? _.sum($scope.sum) : isNaN($scope.sum) ? 0 : $scope.sum; //if $scope.sum is an array then sum it
-    this.groups=$scope.groups || '';
+    this.groups=$scope.groups || [];
     this.id= $scope.id ? $scope.id : 'ndCB_'+_.uniqueId(this.groupId ? this.groupId+'_' : '');
     this.unit=$scope.unit || '';
     this.setValue($scope.ngModel);

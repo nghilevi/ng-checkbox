@@ -7,6 +7,7 @@ angular.module('ngCheckbox')
 
         var handle = function (checkboxCtrl) {
             if(checkboxCtrl.head){
+                console.log('head value: ',checkboxCtrl.ngModel);
                 respond = ngCheckboxControllersCache.get(checkboxCtrl.groups,checkboxCtrl.ngModel);
             }else{
                 respond = ngCheckboxControllersCache.get(checkboxCtrl.groups);

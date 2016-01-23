@@ -13,18 +13,19 @@ angular.module('ngCheckbox')
             return _.intersection(checkboxCtrl.groups,groups).length > 0;
         };
 
-        //TODO turn on /off other team member
+
         var get = function (groups, updatedValue) {
-          var checkboxArr = [];
-          angular.forEach(cached, function (checkboxCtrl) {
-              if(_isBelongToGroup(checkboxCtrl,groups)){
-                 checkboxArr.push(checkboxCtrl);
-                 if(updatedValue!==undefined){
-                     checkboxCtrl.setValue(updatedValue);
-                 }
-              }
-          });
-          return checkboxArr;
+            var checkboxArr = [];
+            angular.forEach(cached, function (checkboxCtrl) {
+                if(_isBelongToGroup(checkboxCtrl,groups)){
+                    //Update values to other team members
+                    if(updatedValue!==undefined){
+                        checkboxCtrl.setValue(updatedValue);
+                    }
+                    checkboxArr.push(checkboxCtrl);
+                }
+            });
+            return checkboxArr;
         };
 
         return{
