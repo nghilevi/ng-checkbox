@@ -116,13 +116,14 @@ angular.module('ngCheckbox')
             },delayedTime || 20);
         };
 
-        //  TODO RESET
         var reset = function () {
-
+            checkboxCtrlsCache =[];
         };
 
         var resetHard = function () {
             reset();
+            ngCheckboxStatisticsListeners={};
+            updatePromise = undefined;
         };
         
         return{
