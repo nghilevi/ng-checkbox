@@ -2,7 +2,7 @@
     <table>
         <tr>
             <th>
-                <ng-checkbox collection-name="upcoming" ng-if="!multiCBCTrl.isMultiTableMode" select-all="true">ITEM</ng-checkbox>
+                <ng-checkbox-2 ng-if="!multiCBCTrl.isMultiTableMode" head="true">ITEM</ng-checkbox-2>
             </th>
             <th>CATEGORY</th>
             <th>QUANTITY</th>
@@ -12,25 +12,24 @@
         <tbody ng-repeat="products in (multiCBCTrl.isMultiTableMode ? multiCBCTrl.products2 : [multiCBCTrl.products2])" ng-init="checkboxGroupId = $index;">
         <tr ng-if="products.length >0 && multiCBCTrl.isMultiTableMode">
             <td>
-                <ng-checkbox collection-name="upcoming" 
-                    group-id="{{::products[0]['category']}}" 
+                <ng-checkbox-2 groups="::products[0]['category']"
                     data-id="{{'headCheckBox'+products[0]['category']}}" 
-                    select-by-group="true">
+                    head="true">
                 <h3 style="display:inline-block">Category {{products[0]['category']}}</h3>
-                </ng-checkbox>
+                </ng-checkbox-2>
             </td>
             <td>{{::product.name}}</td>
             <td>Selected price: {{ multiCBCTrl.sumByGroups[products[0]['category']].sumByUnits }}</td>
         </tr>
         <tr ng-repeat="product in products | limitTo:totalDisplayed track by product.id" tabindex="0">
             <td>
-                <ng-checkbox collection-name="upcoming"
-                              group-id="{{::product.category}}"
+                <ng-checkbox-2 groups="::product.category"
                               data-id="{{::product.id}}"
                               ng-model="product.value"
                               sum="::product.price"
+                               count="{{::product.quantity}}"
                               unit="{{::product.currency}}">{{::product.name}}
-                </ng-checkbox>
+                </ng-checkbox-2>
             </td>
             <td>{{::product.category}}</td>
             <td>{{::product.quantity}}</td>

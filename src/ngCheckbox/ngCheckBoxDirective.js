@@ -1,32 +1,33 @@
 angular.module('ngCheckbox')
-    .directive('ngCheckbox2', function (ngCheckboxControllersCache) {
+    .directive('ngCheckbox2', function (ngCheckboxStatistics) {
         return {
             restrict: 'E',
             transclude: true,
             scope: {
                 head:'=',
-                ngModel:'=?ngModel',
                 sum:'=',
+                groups: '=',
+                ngModel:'=?ngModel',
+                count:'@',
                 id: '@',
-                unit:'@',
-                groups: '='
+                unit:'@'
             },
-            templateUrl: 'legacy/ngCheckbox/ngCheckbox.tpl.html',
-            controllerAs:'checkBoxCtrl',
+            templateUrl: 'ngCheckbox/ngCheckbox.tpl.html',
+            controllerAs:'checkboxCtrl',
             controller: 'NgCheckboxController2',
-            link: function (scope, element, attrs, checkBoxCtrl) {
-                // Only register checkbox if it has groupId, selectAll, selectByGroup or collectionName attribute(s)
-                if(checkBoxCtrl.groups){
-                    ngCheckboxControllersCache.register(checkBoxCtrl);
+            link: function (scope, element, attrs, checkboxCtrl) {
+                // Only register checkbox if it belongs to a group
+                if(checkboxCtrl.groups){
+                    ngCheckboxStatistics.registerCheckboxCtrl(checkboxCtrl);
                 }
 
                 scope.$watch('ngModel', function (value) {
-                    checkBoxCtrl.setValue(value);
+                    checkboxCtrl.setValue(value);
                 });
 
                 scope.$on('$destroy', function () {
-                    if(checkBoxCtrl.groups){
-                        ngCheckboxControllersCache.unregister(checkBoxCtrl);
+                    if(checkboxCtrl.groups){
+                        ngCheckboxStatistics.unregisterCheckboxCtrl(checkboxCtrl);
                     }
                 });
             }
