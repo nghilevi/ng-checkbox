@@ -4,79 +4,43 @@
 angular.module('ngCheckbox')
     .factory('ngCheckboxStatistics', function ($timeout) {
         var checkboxCtrlsCache =[],
-            ngCheckboxStatisticsListeners=[],
+            ngCheckboxStatisticsListeners={},
             updatePromise;
 
+        // REGISTER/UNREGISTER
         var registerCheckboxCtrl = function (checkboxCtrl) {
             checkboxCtrlsCache.push(checkboxCtrl);
+            debounceUpdateAndBroadcastAll();
         };
         
         var unregisterCheckboxCtrl = function (checkboxCtrl) {
             if(checkboxCtrlsCache.length > 0){
                 _.remove(checkboxCtrlsCache,{id:checkboxCtrl.id});
-                checkboxCtrl.ngModel && _debounceUpdate();
+                checkboxCtrl.ngModel && debounceUpdateAndBroadcastAll();
             }
         };
 
-        // TODO add debounce in unregister atleast
         var addListener = function (callBack,thisArg,superGroup) {
-            console.log('addListener');
+            var superGroup = superGroup || 'default';
             if(typeof callBack === 'function'){
-                ngCheckboxStatisticsListeners.push({
+                ngCheckboxStatisticsListeners[superGroup] = ngCheckboxStatisticsListeners[superGroup] || [];
+                ngCheckboxStatisticsListeners[superGroup].push({
                     callBack: callBack,
-                    thisArg:thisArg || null,
-                    superGroup: superGroup || 'default'
+                    thisArg:thisArg || null
                 });
             }
         };
 
-        var debounceUpdate = function () {
-            $timeout.cancel(updatePromise);
-            updatePromise=$timeout(function () {
-                update();
-            },20);
-        };
-
-        var update = function (checkboxCtrl) {
+        // UPDATE
+        var update = function (superGroup,groups,updatedValue) {
             var statistics={};
-            if(checkboxCtrl){
-                angular.forEach(checkboxCtrlsCache, function (cachedCheckboxCtrl) {
-                    if(cachedCheckboxCtrl.superGroup === checkboxCtrl.superGroup){
-                        angular.forEach(cachedCheckboxCtrl.groups, function (group) {
-
-                            if(checkboxCtrl.head && (checkboxCtrl.groups.length ===0 || checkboxCtrl.groups.indexOf(group)> -1 )){
-                                cachedCheckboxCtrl.setValue(checkboxCtrl.ngModel); //Update values to checkboxes under the same group
-                            }
-
-                            if(!cachedCheckboxCtrl.head){
-                                statistics[group] = statistics[group] || {};
-                                statistics[group].count = statistics[group].count || 0;
-                                statistics[group].sumByUnits = statistics[group].sumByUnits || {};
-                                statistics[group].sumByUnits[cachedCheckboxCtrl.unit] = statistics[group].sumByUnits[cachedCheckboxCtrl.unit] || 0;
-
-                                if(cachedCheckboxCtrl.ngModel){
-                                    statistics[group].count += cachedCheckboxCtrl.count;
-                                    statistics[group].sumByUnits[cachedCheckboxCtrl.unit] += cachedCheckboxCtrl.count * cachedCheckboxCtrl.sum;
-                                }
-
-                            }
-
-                        });
-                    }
-                });
-
-                // invoke listeners
-                console.log('this sould not be logged');
-                angular.forEach(ngCheckboxStatisticsListeners, function (listener) {
-                    if(listener.superGroup === checkboxCtrl.superGroup){
-                        (listener.callBack || angular.noop).apply(listener.thisArg ? listener.thisArg : null,[statistics]);
-                    }
-                });
-
-
-            }else{
-                angular.forEach(checkboxCtrlsCache, function (cachedCheckboxCtrl) {
+            angular.forEach(checkboxCtrlsCache, function (cachedCheckboxCtrl) {
+                if(cachedCheckboxCtrl.superGroup === superGroup){
                     angular.forEach(cachedCheckboxCtrl.groups, function (group) {
+
+                        if(groups && (groups.length ===0 || groups.indexOf(group)> -1 )){
+                            cachedCheckboxCtrl.setValue(updatedValue); //Update values to checkboxes under the same group
+                        }
 
                         if(!cachedCheckboxCtrl.head){
                             statistics[group] = statistics[group] || {};
@@ -92,19 +56,41 @@ angular.module('ngCheckbox')
                         }
 
                     });
-
-                });
-
-                // invoke listeners
-                console.log('gonna invoke all listeners:',ngCheckboxStatisticsListeners);
-                angular.forEach(ngCheckboxStatisticsListeners, function (listener) {
-                    (listener.callBack || angular.noop).apply(listener.thisArg ? listener.thisArg : null,[statistics]);
-                });
-            }
-
-            console.log('statistics: ',statistics);
+                }
+            });
+            return statistics;
         };
 
+        // BROADCAST
+        var broadcast = function (listener,whatToListen) {
+            (listener.callBack || angular.noop).apply(listener.thisArg ? listener.thisArg : null,[whatToListen]);
+        };
+
+        var updateAndbroadcast = function (superGroup,groups,updatedValue) {
+            var listeners = ngCheckboxStatisticsListeners[superGroup];
+            angular.forEach(listeners, function (listener) {
+                var statistics = update(superGroup,groups,updatedValue);
+                broadcast(listener,statistics);
+            });
+        };
+
+        var updateAndBroadcastAll = function () {
+            // invoke listeners
+            for(var superGroup in ngCheckboxStatisticsListeners){
+                if(ngCheckboxStatisticsListeners.hasOwnProperty(superGroup)){
+                    updateAndbroadcast(superGroup);
+                }
+            }
+        };
+
+        var debounceUpdateAndBroadcastAll = function (delayedTime) {
+            $timeout.cancel(updatePromise);
+            updatePromise=$timeout(function () {
+                updateAndBroadcastAll();
+            },delayedTime || 20);
+        };
+
+        //  TODO RESET
         var reset = function () {
 
         };
@@ -114,12 +100,20 @@ angular.module('ngCheckbox')
         };
         
         return{
+            // REGISTER/UNREGISTER
+            addListener:addListener,
             registerCheckboxCtrl:registerCheckboxCtrl,
             unregisterCheckboxCtrl:unregisterCheckboxCtrl,
+
+            // UPDATE AND BROADCAST
             update:update,
-            debounceUpdate:debounceUpdate,
-            addListener:addListener,
-            resetHard:resetHard,
-            reset:reset
+            broadcast:broadcast,
+            updateAndbroadcast:updateAndbroadcast,
+            updateAndBroadcastAll:updateAndBroadcastAll,
+            debounceUpdateAndBroadcastAll:debounceUpdateAndBroadcastAll,
+
+            //  RESET
+            reset:reset,
+            resetHard:resetHard
         }
     });

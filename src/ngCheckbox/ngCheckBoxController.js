@@ -19,7 +19,12 @@ NgCheckboxController2.prototype.setValue= function (value) {
 
 NgCheckboxController2.prototype.onValueChange= function (value) {
     this.setValue(value);
-    this.ngCheckboxStatistics.update(this);
+    if(this.head){
+        this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup,this.groups,this.ngModel);
+    }else{
+        this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup);
+    }
+
 };
 
 angular.module('ngCheckbox')

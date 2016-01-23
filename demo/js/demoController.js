@@ -2,6 +2,7 @@
  * Created by Le on 1/23/2016.
  */
 var onCheckboxClick = function (stats) {
+    console.log('onCheckboxClick');
     var _this = this;
     this.count = 0;
     this.sumByUnits = 0;
@@ -22,11 +23,6 @@ var ExampleControllerBasic = function (exampleTypeBasic,exampleProductsBasic,$sc
     $scope.$on('$destroy', function () {
         _this.ngCheckboxStatistics.reset();
     });
-
-    $document.ready(function () {
-        console.log('readu');
-        _this.ngCheckboxStatistics.debounceUpdate();
-    });
 };
 
 ExampleControllerBasic.prototype.onCheckboxClick = onCheckboxClick;
@@ -45,11 +41,6 @@ var ExampleControllerAdvance = function (exampleTypeAdvance,exampleProductsAdvan
 
     $scope.$on('$destroy', function () {
         _this.ngCheckboxStatistics.reset();
-    });
-
-    $document.ready(function () {
-        console.log('readu');
-        _this.ngCheckboxStatistics.debounceUpdate();
     });
 };
 
