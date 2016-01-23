@@ -15,7 +15,7 @@
     <table>
         <tr>
             <th>
-                <ng-checkbox-2 super-group="{{::exampleCtrl.type}}" ng-if="!exampleCtrl.isMultiTableMode" head="true"><b>ITEM</b></ng-checkbox-2>
+                <ng-checkbox super-group="{{::exampleCtrl.type}}" ng-if="!exampleCtrl.isMultiTableMode" head="true"><b>ITEM</b></ng-checkbox>
             </th>
             <th>CATEGORY</th>
             <th>QUANTITY</th>
@@ -25,22 +25,22 @@
         <tbody ng-repeat="products in (exampleCtrl.isMultiTableMode ? exampleCtrl.products : [exampleCtrl.products])" ng-init="checkboxGroupId = $index;">
         <tr ng-if="products.length >0 && exampleCtrl.isMultiTableMode">
             <td>
-                <ng-checkbox-2 super-group="{{::exampleCtrl.type}}" groups="::products[0]['category']" data-id="{{'headCheckBox'+products[0]['category']}}" head="true">
+                <ng-checkbox super-group="{{::exampleCtrl.type}}" groups="::products[0]['category']" data-id="{{'headCheckBox'+products[0]['category']}}" head="true">
                     <h3 style="display:inline-block">Category {{products[0]['category']}}</h3>
-                </ng-checkbox-2>
+                </ng-checkbox>
             </td>
             <td>{{::product.name}}</td>
             <td>Selected price: {{ exampleCtrl.sumByGroups[products[0]['category']].sumByUnits }}</td>
         </tr>
         <tr ng-repeat="product in products | limitTo:exampleCtrl.totalDisplayed track by product.id" tabindex="0">
             <td>
-                <ng-checkbox-2 super-group="{{::exampleCtrl.type}}" groups="::product.category"
+                <ng-checkbox super-group="{{::exampleCtrl.type}}" groups="::product.category"
                                data-id="{{::product.id}}"
                                ng-model="product.value"
                                count="{{::product.quantity}}"
                                sum="::product.price"
                                unit="{{::product.currency}}">{{::product.name}}
-                </ng-checkbox-2>
+                </ng-checkbox>
             </td>
             <td>{{::product.category}}</td>
             <td>{{::product.quantity}}</td>

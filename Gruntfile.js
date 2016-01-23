@@ -1,6 +1,8 @@
 /*
   Modify if you wanna use grunt instead of gulp
   Also add this in package.json's devDependencies
+
+  Notice that this build process for Grunt has not been completed yet!
   
   "grunt-contrib-concat": "~0.5.1",
   "grunt-contrib-connect": "~0.11.2",

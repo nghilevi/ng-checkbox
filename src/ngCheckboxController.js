@@ -1,4 +1,4 @@
-function NgCheckboxController2($scope,ngCheckboxStatistics) {
+function NgCheckboxController($scope,ngCheckboxStatistics) {
     this.ngCheckboxStatistics = ngCheckboxStatistics;
     this.$scope = $scope;
     this.head = ($scope.head===true || $scope.head===false)? $scope.head : false;
@@ -13,11 +13,11 @@ function NgCheckboxController2($scope,ngCheckboxStatistics) {
 }
 
 //Change the empty box icon to be checked and vice versa
-NgCheckboxController2.prototype.setValue= function (value) {
+NgCheckboxController.prototype.setValue= function (value) {
     this.ngModel = this.$scope.ngModel = (value===true || value===false)? value : true;
 };
 
-NgCheckboxController2.prototype.onValueChange= function (value) {
+NgCheckboxController.prototype.onValueChange= function (value) {
     this.setValue(value);
     if(this.head){
         this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup,this.groups,this.ngModel);
@@ -28,4 +28,4 @@ NgCheckboxController2.prototype.onValueChange= function (value) {
 };
 
 angular.module('ngCheckbox')
-    .controller('NgCheckboxController2', NgCheckboxController2);
+    .controller('NgCheckboxController', NgCheckboxController);

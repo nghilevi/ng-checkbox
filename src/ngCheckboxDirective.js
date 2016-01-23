@@ -1,5 +1,5 @@
 angular.module('ngCheckbox')
-    .directive('ngCheckbox2', function (ngCheckboxStatistics) {
+    .directive('ngCheckbox', function (ngCheckboxStatistics) {
         return {
             restrict: 'E',
             transclude: true,
@@ -15,7 +15,7 @@ angular.module('ngCheckbox')
             },
             templateUrl: 'ngCheckbox.tpl.html',
             controllerAs:'checkboxCtrl',
-            controller: 'NgCheckboxController2',
+            controller: 'NgCheckboxController',
             link: function (scope, element, attrs, checkboxCtrl) {
                 // Only register checkbox if it belongs to a group
                 if(checkboxCtrl.groups){
