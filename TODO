@@ -1,7 +1,22 @@
-.demo with features and description
-.add test + dist process
-.release
+v1.0.0
+. readme - more examples simple one
+. remove dependency on lodash, float, double etc. use lodash when possible -checkboxUtil, add comments
+. error handling
+. release
 
-EOP: 30/1/2016
+v1.1.0
+. enhance demo with features and description (btn separately not dropdown)
+.. sort
+.. sort by category
+.. delete
+.. load more (*make things stateful for each collection)- a historyservice
+.. add fork me on gitub
+
+v1.1.1
+. add test before dist process
+. configure options
+
+
+EOP: 30/1/2016 - broadcast everywhere (learn how to broadcast ur module to large audience)
 
 
