@@ -3,6 +3,7 @@ var $ = require('gulp-load-plugins')();
 var ngHtml2Js = require('gulp-ng-html2js');
 var mergeStream = require('merge-stream');
 var build = 'demo/build';
+require('gulp-release-it')(gulp);
 var requireDir = require('require-dir');
 requireDir('gulp',{recurse:true});
 
