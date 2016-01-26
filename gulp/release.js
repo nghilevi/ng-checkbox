@@ -7,7 +7,7 @@ var git = require('gulp-git');
 
 var release_branch = 'master';
 
-gulp.task('bump', ['build-dist'],function () {
+gulp.task('bump', ['dist'],function () {
     return gulp.src(['package.json'])
         .pipe($.bump())
         .pipe(gulp.dest('./'));
