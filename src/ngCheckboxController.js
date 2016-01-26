@@ -20,10 +20,12 @@ NgCheckboxController.prototype.setValue= function (value) {
 
 NgCheckboxController.prototype.onValueChange= function (value) {
     this.setValue(value);
+    var selectedId = this.ngModel ? this.id : null;
+    var unselectedId = this.ngModel ? null : this.id;
     if(this.head){
-        this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup,this.groups,this.ngModel);
+        this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup,this.groups,this.ngModel,selectedId,unselectedId);
     }else{
-        this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup);
+        this.ngCheckboxStatistics.updateAndbroadcast(this.superGroup,null,null,selectedId,unselectedId);
     }
 
 };

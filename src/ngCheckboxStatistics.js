@@ -48,9 +48,10 @@ angular.module('ngCheckbox')
             return processedSumByUnits;
         };
 
-        var update = function (superGroup,groups,updatedValue) {
-            var groupsStats={},sumByUnits={};
-            var statistics={superGroup:superGroup,groups:groupsStats,count:0,sumByUnits:sumByUnits};
+        var update = function (superGroup,groups,updatedValue,selectedId,unselectedId) {
+            var groupsStats={},sumByUnits={},selectedIds=[];
+            var statistics={selectedId:selectedId,unselectedId:unselectedId,selectedIds:selectedIds,
+                superGroup:superGroup,groups:groupsStats,count:0,sumByUnits:sumByUnits};
 
             angular.forEach(checkboxCtrlsCache, function (cachedCheckboxCtrl) {
                 if(cachedCheckboxCtrl.superGroup === superGroup){
@@ -70,6 +71,7 @@ angular.module('ngCheckbox')
                             sumByUnits[cachedCheckboxCtrl.unit] = sumByUnits[cachedCheckboxCtrl.unit] || 0;
 
                             if(cachedCheckboxCtrl.ngModel){
+                                selectedIds.push(cachedCheckboxCtrl.id);
                                 groupsStats[group].count += cachedCheckboxCtrl.count;
                                 statistics.count+= cachedCheckboxCtrl.count;
 
@@ -97,10 +99,10 @@ angular.module('ngCheckbox')
             (listener.callBack || angular.noop).apply(listener.thisArg ? listener.thisArg : null,[whatToListen]);
         };
 
-        var updateAndbroadcast = function (superGroup,groups,updatedValue) {
+        var updateAndbroadcast = function (superGroup,groups,updatedValue,selectedId,unselectedId) {
             var listeners = ngCheckboxStatisticsListeners[superGroup];
             angular.forEach(listeners, function (listener) {
-                var statistics = update(superGroup,groups,updatedValue);
+                var statistics = update(superGroup,groups,updatedValue,selectedId,unselectedId);
                 broadcast(listener,statistics);
             });
         };
