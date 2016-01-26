@@ -1,6 +1,6 @@
 {
   "name": "ng-checkbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The component provides selection data and its statistics based on checkboxes selection.",
   "main": "index.js",
   "scripts": {
