@@ -1,6 +1,6 @@
 {
   "name": "ng-checkbox",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The component provides selection data and its statistics based on checkboxes selection.",
   "main": "index.js",
   "scripts": {
@@ -12,17 +12,22 @@
     "lodash": "~3.10.1",
     "angular": "~1.4.8"
   },
-  "repository":{
-    "type":"git",
-    "url":"git+https://github.com/vinhnghi223/ng-checkbox.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinhnghi223/ng-checkbox.git"
   },
-  "keywords":[
-    "checkbox","ng-checkbox","angular","calculation","statistics","math"
+  "keywords": [
+    "checkbox",
+    "ng-checkbox",
+    "angular",
+    "calculation",
+    "statistics",
+    "math"
   ],
-  "bugs":{
-    "url":"https://github.com/vinhnghi223/ng-checkbox/issues"
+  "bugs": {
+    "url": "https://github.com/vinhnghi223/ng-checkbox/issues"
   },
-  "homepage":"",
+  "homepage": "",
   "devDependencies": {
     "angular-ui-router": "^1.0.0-alpha0",
     "foundation-sites": "^6.1.1",
