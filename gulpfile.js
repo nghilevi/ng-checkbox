@@ -3,6 +3,8 @@ var $ = require('gulp-load-plugins')();
 var ngHtml2Js = require('gulp-ng-html2js');
 var mergeStream = require('merge-stream');
 var build = 'demo/build';
+var requireDir = require('require-dir');
+requireDir('gulp',{recurse:true});
 
 gulp.task('clean:build',function(){
 	return gulp.src(build,{read:false}).pipe($.clean());

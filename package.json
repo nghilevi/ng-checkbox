@@ -16,13 +16,16 @@
     "angular-ui-router": "^1.0.0-alpha0",
     "foundation-sites": "^6.1.1",
     "gulp": "^3.9.0",
+    "gulp-bump": "^1.0.0",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
+    "gulp-git": "^1.6.1",
     "gulp-load-plugins": "^1.2.0",
-    "gulp-ng-html2js": "^0.2.0",
-    "gulp-webserver": "^0.9.1",
     "gulp-ng-annotate": "^1.1.0",
+    "gulp-ng-html2js": "^0.2.0",
     "gulp-uglify": "^1.5.1",
-    "merge-stream": "^1.0.0"
+    "gulp-webserver": "^0.9.1",
+    "merge-stream": "^1.0.0",
+    "require-dir": "^0.3.0"
   }
 }
