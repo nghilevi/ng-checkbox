@@ -1,6 +1,5 @@
 v1.0.0
 . readme - more examples simple one
-. remove dependency on lodash, float, double etc. use lodash when possible -checkboxUtil, add comments
 . error handling
 . release
 

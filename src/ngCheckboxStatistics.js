@@ -31,22 +31,21 @@ angular.module('ngCheckbox')
             }
         };
 
+        // BUSINESS LOGIC
         // UPDATE
-        var processData = function (data) {
-            var sumByUnits = data.sumByUnits;
+        var convertSumByUnitsToArray = function (sumByUnits) {
             // convert sumByUnits from {"unit1":60,"unit2":10} -> [ {sum: 60,unit:'unit1'}, {sum: 10,unit:'unit2'} ]
-            var tempSumByUnits=[];
+            var processedSumByUnits=[];
             for(var unit in sumByUnits){
                 if(sumByUnits.hasOwnProperty(unit)){
-                    tempSumByUnits.push({
+                    processedSumByUnits.push({
                         unit:unit,
                         sum:sumByUnits[unit]
                     })
                 }
 
             }
-            data.sumByUnits=tempSumByUnits;
-            return data;
+            return processedSumByUnits;
         };
 
         var update = function (superGroup,groups,updatedValue) {
@@ -84,7 +83,13 @@ angular.module('ngCheckbox')
                 }
             });
 
-            return processData(statistics);
+            statistics.sumByUnits = convertSumByUnitsToArray(statistics.sumByUnits);
+            for(var groupName in statistics.groups){
+                if(statistics.groups.hasOwnProperty(groupName)){
+                    statistics.groups[groupName].sumByUnits = convertSumByUnitsToArray(statistics.groups[groupName].sumByUnits);
+                }
+            }
+            return statistics;
         };
 
         // BROADCAST

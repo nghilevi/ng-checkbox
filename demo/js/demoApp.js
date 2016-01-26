@@ -28,11 +28,11 @@ demoApp.config(function($stateProvider, $urlRouterProvider) {
       views: {
         "exampleBasic": {
             controller: "ExampleControllerBasic",
-            templateUrl: "partials/example.html",
+            templateUrl: "partials/example.html"
         },
         "exampleAdvance": {
             controller: "ExampleControllerAdvance",
-            templateUrl: "partials/example.html",
+            templateUrl: "partials/example.html"
         }
       }
     });

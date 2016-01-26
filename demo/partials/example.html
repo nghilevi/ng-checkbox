@@ -1,13 +1,7 @@
 <div ng-if="exampleCtrl.type === 'advance'" class="row align-center">
     <div style="margin-left:28%" class="columns">
-        <button class="button" type="button" data-toggle="example-dropdown">Sort</button>
-        <div class="dropdown-pane" id="example-dropdown" data-dropdown data-auto-focus="true">
-            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
-                <li ng-click="exampleCtrl.sort(option)" ng-repeat="option in exampleCtrl.options">
-                    {{option.key}}
-                </li>
-            </ul>
-        </div>
+        <button class="button" type="button" ng-click="exampleCtrl.sort('quantity')">Sort by Quantity</button>
+        <button class="button" type="button" ng-click="exampleCtrl.sort('category')">Group by Category</button>
     </div>
 </div>
 
@@ -45,19 +39,20 @@
             <td>{{::product.category}}</td>
             <td>{{::product.quantity}}</td>
             <td>{{::product.price}} {{::product.currency}}</td>
-            <td><button ng-click="exampleCtrl.delete(product)" class="remove">Remove</button></td>
+            <td><button ng-click="exampleCtrl.delete(product.id)" class="remove">Remove</button></td>
         </tr>
 
         <!-- Summary -->
         <tr ng-if="products.length >0">
             <td colspan="4">
-                <span>You selected: {{exampleCtrl.count}} items</span>
+                <span>You selected:  <span ng-if="!exampleCtrl.isMultiTableMode">{{exampleCtrl.count}}</span>
+                    <span ng-if="exampleCtrl.isMultiTableMode">{{ exampleCtrl.groups[products[0].category].count }}</span> items</span>
             </td>
             <td colspan="1">
                 <span ng-if="!exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.sumByUnits">
                     <span ng-if="amount.sum > 0">{{ amount.sum}} {{ amount.unit }}<br/></span>
                 </span>
-                <span ng-if="exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.sumByGroups[payments[0].from].sumByUnits">
+                <span ng-if="exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.groups[products[0].category].sumByUnits">
                     {{ amount.sum}} {{ amount.unit }}<br/>
                 </span>
             </td>
@@ -68,8 +63,9 @@
     </table>
 </div>
 
-<div class="row align-center">
+<!-- Only show Load more on basic template -->
+<div ng-if="exampleCtrl.type === 'basic'" class="row align-center">
     <div ng-if="exampleCtrl.products.length >0">
-        <button class="hollow button" state=" {{ exampleCtrl.totalDisplayed >= products.length ? 'disabled' : null }} "  ng-click="loadMore(exampleCtrl.totalDisplayed)">Load More</button>
+        <button class="hollow button" ng-class="{'disabled' : exampleCtrl.totalDisplayed >= exampleCtrl.products.length  }"  ng-click="exampleCtrl.loadMore(exampleCtrl.totalDisplayed)">Load More</button>
     </div>
 </div>

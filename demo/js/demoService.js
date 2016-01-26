@@ -10,13 +10,12 @@ demoApp
         var sampleCurrencies = ['USD','EUR','SEK'];
         var sampleCat = ['Green','Ripe'];
 
-        var createSampleProducts = function (noOfProducts,status,ramdomIntAmount,ramdomDecAmount) {
+        var createSampleProducts = function (noOfProducts,ramdomIntAmount,ramdomDecAmount) {
             noOfProducts = noOfProducts || 9;
-            status = status || 'unconfirmed';
             var sampleProducts=[];
             _.times(noOfProducts, function(){
                 sampleProducts.push({
-                    id: _.uniqueId('uP_'),//all id MUST be unique for it to work !!!
+                    id: _.uniqueId('id_'),//all id MUST be unique for it to work !!!
                     name:_.sample(sampleNames),
                     category: _.sample(sampleCat),
                     price: ramdomIntAmount ? _.random(1,10) : ramdomDecAmount ? _.random(1,10,true).toFixed(2) : 10, // default is 10
