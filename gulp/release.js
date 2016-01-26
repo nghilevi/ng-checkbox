@@ -2,7 +2,6 @@
  * Created by Le on 1/26/2016.
  */
 var gulp = require('gulp');
-require('gulp-release-tasks')(gulp);
 var $ = require('gulp-load-plugins')();
 var git = require('gulp-git');
 

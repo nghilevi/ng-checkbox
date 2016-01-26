@@ -7,11 +7,22 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nghi Le Vinh <vinhnghi223@gmail.com> (http://vinhnghi223.github.io/)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "lodash": "~3.10.1",
     "angular": "~1.4.8"
   },
+  "repository":{
+    "type":"git",
+    "url":"git+https://github.com/vinhnghi223/ng-checkbox.git"
+  },
+  "keywords":[
+    "checkbox","ng-checkbox","angular","calculation","statistics","math"
+  ],
+  "bugs":{
+    "url":"https://github.com/vinhnghi223/ng-checkbox/issues"
+  },
+  "homepage":"",
   "devDependencies": {
     "angular-ui-router": "^1.0.0-alpha0",
     "foundation-sites": "^6.1.1",
