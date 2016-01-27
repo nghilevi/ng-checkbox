@@ -1,8 +1,10 @@
+## ng-checkbox
+
+[![NPM](https://nodei.co/npm/ng-checkbox.png?compact=true)](https://www.npmjs.com/package/ng-checkbox)
+
 ## What is ng-checkbox?
 
 A checkbox Angular directive provides user selected data and its statistics. This component is still on development and finalizing. Any contributions are welcomed!
-
-[![NPM](https://nodei.co/npm/ng-checkbox.png?compact=true)](https://www.npmjs.com/package/ng-checkbox)
 
 ## [`Demo`](http://vinhnghi223.github.io/ng-checkbox/)
 
