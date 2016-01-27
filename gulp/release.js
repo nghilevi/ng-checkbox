@@ -1,6 +1,7 @@
 /**
  * Created by Le on 1/26/2016.
  */
+    // This task does not function atm, just ignore it
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var git = require('gulp-git');
@@ -26,6 +27,7 @@ gulp.task('tag',['bump'], function () {
 });
 
 
+/*
 gulp.task('release',['tag'], function (done) {
     require('child_process').spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done);
-});
+});*/

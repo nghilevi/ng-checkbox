@@ -6,9 +6,6 @@ v1.0.0
 
 v1.1.0
 . enhance demo with features and description (btn separately not dropdown)
-.. sort
-.. sort by category
-.. delete
 .. load more (*make things stateful for each collection)- a historyservice
 .. add fork me on gitub
 
