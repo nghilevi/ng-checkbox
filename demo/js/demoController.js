@@ -52,6 +52,7 @@ var ExampleControllerAdvance = function (exampleTypeAdvance,exampleProductsAdvan
     this.products = exampleProductsAdvance;
     this.totalDisplayed = 30;
     this.ngCheckboxStatistics = ngCheckboxStatistics;
+    //ngCheckboxStatistics.addListener(this.onCheckboxClick,this);
     ngCheckboxStatistics.addListener(this.onCheckboxClick,this,this.type);
 
     //SORTING
