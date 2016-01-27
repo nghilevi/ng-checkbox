@@ -1,0 +1,14 @@
+label{
+    font-size:100%;
+    line-height: 1;
+}
+
+label > [type='checkbox'] {
+    margin :0 10px 0 0;
+    font-size:100%;
+}
+
+.remove{
+   color:red;
+   cursor:pointer
+}

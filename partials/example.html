@@ -1,0 +1,71 @@
+<div ng-if="exampleCtrl.type === 'advance'" class="row align-center">
+    <div style="margin-left:28%" class="columns">
+        <button class="button" type="button" ng-click="exampleCtrl.sort('quantity')">Sort by Quantity</button>
+        <button class="button" type="button" ng-click="exampleCtrl.sort('category')">Group by Category</button>
+    </div>
+</div>
+
+<div class="row align-center">
+    <table>
+        <tr>
+            <th>
+                <ng-checkbox super-group="{{::exampleCtrl.type}}" ng-if="!exampleCtrl.isMultiTableMode" head="true"><b>ITEM</b></ng-checkbox>
+            </th>
+            <th>CATEGORY</th>
+            <th>QUANTITY</th>
+            <th>AMOUNT</th>
+            <th></th>
+        </tr>
+        <tbody ng-repeat="products in (exampleCtrl.isMultiTableMode ? exampleCtrl.products : [exampleCtrl.products])" ng-init="checkboxGroupId = $index;">
+        <tr ng-if="products.length >0 && exampleCtrl.isMultiTableMode">
+            <td>
+                <ng-checkbox super-group="{{::exampleCtrl.type}}" groups="::products[0]['category']" data-id="{{'headCheckBox'+products[0]['category']}}" head="true">
+                    <h3 style="display:inline-block">Category {{products[0]['category']}}</h3>
+                </ng-checkbox>
+            </td>
+            <td>{{::product.name}}</td>
+            <td>Selected price: {{ exampleCtrl.sumByGroups[products[0]['category']].sumByUnits }}</td>
+        </tr>
+        <tr ng-repeat="product in products | limitTo:exampleCtrl.totalDisplayed track by product.id" tabindex="0">
+            <td>
+                <ng-checkbox super-group="{{::exampleCtrl.type}}" groups="::product.category"
+                               data-id="{{::product.id}}"
+                               ng-model="product.value"
+                               count="{{::product.quantity}}"
+                               sum="::product.price"
+                               unit="{{::product.currency}}">{{::product.name}}
+                </ng-checkbox>
+            </td>
+            <td>{{::product.category}}</td>
+            <td>{{::product.quantity}}</td>
+            <td>{{::product.price}} {{::product.currency}}</td>
+            <td><button ng-click="exampleCtrl.delete(product.id)" class="remove">Remove</button></td>
+        </tr>
+
+        <!-- Summary -->
+        <tr ng-if="products.length >0">
+            <td colspan="4">
+                <span>You selected:  <span ng-if="!exampleCtrl.isMultiTableMode">{{exampleCtrl.count}}</span>
+                    <span ng-if="exampleCtrl.isMultiTableMode">{{ exampleCtrl.groups[products[0].category].count }}</span> items</span>
+            </td>
+            <td colspan="1">
+                <span ng-if="!exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.sumByUnits">
+                    <span ng-if="amount.sum > 0">{{ amount.sum}} {{ amount.unit }}<br/></span>
+                </span>
+                <span ng-if="exampleCtrl.isMultiTableMode" ng-repeat="amount in exampleCtrl.groups[products[0].category].sumByUnits">
+                    {{ amount.sum}} {{ amount.unit }}<br/>
+                </span>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Only show Load more on basic template -->
+<div ng-if="exampleCtrl.type === 'basic'" class="row align-center">
+    <div ng-if="exampleCtrl.products.length >0">
+        <button class="hollow button" ng-class="{'disabled' : exampleCtrl.totalDisplayed >= exampleCtrl.products.length  }"  ng-click="exampleCtrl.loadMore(exampleCtrl.totalDisplayed)">Load More</button>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="ngCheckbox.demo">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+    <link rel="stylesheet" href="foundation-sites/dist/foundation.css" />
+    <link rel="stylesheet" href="foundation-sites/dist/foundation-flex.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="foundation-sites/dist/foundation.min.js"></script>
+    <script src="angular/angular.min.js"></script>
+    <script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="lodash/index.js"></script>
+    <script src="build/ngCheckbox.js"></script>
+
+    <!-- Demo js -->
+    <script src="js/demoService.js"></script>
+    <script src="js/demoApp.js"></script>
+    <script src="js/demoController.js"></script>
+
+  </head>
+  <body>
+        <div class="row align-center"><h1>DEMO APP</h1></div>
+
+        <div class="row"><b>Basic example</b></div>
+        <div ui-view="exampleBasic"></div>
+        
+        <br/><hr/><br/>
+
+        <div class="row"><b>Advance example</b></div>
+        <div ui-view="exampleAdvance"></div>
+  </body>
+
+</html>
