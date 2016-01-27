@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var ngHtml2Js = require('gulp-ng-html2js');
 var mergeStream = require('merge-stream');
+var runSequence = require('run-sequence');
 var build = 'demo/build';
 require('gulp-release-it')(gulp);
 var requireDir = require('require-dir');
@@ -44,8 +45,21 @@ gulp.task('copy:build',function(){
 	return vendorJSStream.pipe(gulp.dest('demo/js'));
 });
 
-gulp.task('dist',['clean:dist'],function(){
-	return gulp.src('demo/build/ngCheckbox.js')
+gulp.task('copy:dist',function(){
+    return gulp.src([
+        'package.json',
+        'README.md'
+    ]).pipe(gulp.dest('dist'));
+});
+
+gulp.task('dist',function(){
+
+    runSequence('clean:dist','copy:dist');
+
+    var buildStream = gulp.src('demo/build/ngCheckbox.js');
+        buildStream.pipe(gulp.dest('dist'));
+
+	return buildStream
 		.pipe($.ngAnnotate())
 		.pipe($.uglify())
 		.pipe($.concat('ngCheckbox.min.js'))
