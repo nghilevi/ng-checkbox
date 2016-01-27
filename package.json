@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/vinhnghi223/ng-checkbox/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/vinhnghi223/ng-checkbox#readme",
   "devDependencies": {
     "angular-ui-router": "^1.0.0-alpha0",
     "foundation-sites": "^6.1.1",

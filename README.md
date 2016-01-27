@@ -1,5 +1,3 @@
-## ng-checkbox
-
 [![NPM](https://nodei.co/npm/ng-checkbox.png?compact=true)](https://www.npmjs.com/package/ng-checkbox)
 
 ## What is ng-checkbox?
