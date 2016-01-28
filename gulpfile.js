@@ -47,23 +47,22 @@ gulp.task('copy:build',function(){
 
 gulp.task('copy:dist',function(){
     return gulp.src([
+        'demo/build/ngCheckbox.js',
         'package.json',
         'README.md'
     ]).pipe(gulp.dest('dist'));
 });
 
+gulp.task('min:js',function(){
+    return gulp.src('demo/build/ngCheckbox.js')
+        .pipe($.ngAnnotate())
+        .pipe($.uglify())
+        .pipe($.concat('ngCheckbox.min.js'))
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('dist',function(){
-
-    runSequence('clean:dist','copy:dist');
-
-    var buildStream = gulp.src('demo/build/ngCheckbox.js');
-        buildStream.pipe(gulp.dest('dist'));
-
-	return buildStream
-		.pipe($.ngAnnotate())
-		.pipe($.uglify())
-		.pipe($.concat('ngCheckbox.min.js'))
-		.pipe(gulp.dest('dist'));
+    runSequence('clean:dist','copy:dist','min:js');
 });
 
 
