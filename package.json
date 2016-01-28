@@ -2,7 +2,7 @@
   "name": "ng-checkbox",
   "version": "1.0.0",
   "description": "The component provides selection data and its statistics based on checkboxes selection.",
-  "main": "index.js",
+  "main": "dist/ngCheckbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
