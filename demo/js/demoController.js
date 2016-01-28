@@ -26,6 +26,7 @@ var ExampleControllerBasic = function (exampleTypeBasic,exampleProductsBasic,$sc
     this.products = exampleProductsBasic;
     this.totalDisplayed = 3;
     this.ngCheckboxStatistics = ngCheckboxStatistics;
+    //ngCheckboxStatistics.addListener(this.onCheckboxClick,this);
     ngCheckboxStatistics.addListener(this.onCheckboxClick,this,this.type);
 
     var noOfProducts = exampleProductsBasic.length;
