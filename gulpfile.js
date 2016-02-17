@@ -4,9 +4,14 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var mergeStream = require('merge-stream');
 var runSequence = require('run-sequence');
 var build = 'demo/build';
-require('gulp-release-it')(gulp);
 var requireDir = require('require-dir');
 requireDir('gulp',{recurse:true});
+var releaseOpts = {
+	//releaseBranch:'test',
+	//excludeTask: 'publish'
+};
+
+require('gulp-release-easy')(gulp,releaseOpts);
 
 gulp.task('clean:build',function(){
 	return gulp.src(build,{read:false}).pipe($.clean());

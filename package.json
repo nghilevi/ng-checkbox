@@ -1,6 +1,6 @@
 {
   "name": "ng-checkbox",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The component provides selection data and its statistics based on checkboxes selection.",
   "main": "dist/ngCheckbox.js",
   "scripts": {
@@ -39,7 +39,7 @@
     "gulp-load-plugins": "^1.2.0",
     "gulp-ng-annotate": "^1.1.0",
     "gulp-ng-html2js": "^0.2.0",
-    "gulp-release-it": "^1.0.10",
+    "gulp-release-easy": "^1.0.5",
     "gulp-uglify": "^1.5.1",
     "gulp-webserver": "^0.9.1",
     "merge-stream": "^1.0.0",
