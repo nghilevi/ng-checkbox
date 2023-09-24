@@ -4,7 +4,7 @@
 
 A checkbox Angular directive provides user selected data and its statistics. Any contributions are welcomed!
 
-## [`Demo`](http://vinhnghi223.github.io/ng-checkbox/)
+## [`Demo`](http://nghilevi.github.io/ng-checkbox/)
 
 ## Installation
 
